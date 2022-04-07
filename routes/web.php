@@ -20,6 +20,8 @@ Route::get('/category/table', [App\Http\Controllers\Admin\CategoryController::cl
 Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'editCategory'])->name('editCategory');
 Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'updateCategory'])->name('updateCategory');
 Route::get('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+Route::get('/category/restore/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'restoreCategory'])->name('restoreCategory');
+Route::get('/category/trash', [App\Http\Controllers\Admin\CategoryController::class, 'trash'])->name('trash');
 Route::post('/category/deleteCategories', [App\Http\Controllers\Admin\CategoryController::class, 'deleteMultipleCategory'])->name('deleteMultipleCategory');
 Route::get('/category/export-excel', [App\Http\Controllers\Admin\CategoryController::class, 'exportCategoryExcel'])->name('exportCategoryExcel');
 Route::get('/category/make-pdf', [App\Http\Controllers\Admin\CategoryController::class, 'makePdf'])->name('makePdf');

@@ -24,7 +24,7 @@
     <script src="{{asset('public/dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('public/dashboard/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('public/dashboard/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
-
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
     <script>
         (function($) {
             "use strict";
@@ -42,6 +42,23 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+             switch(type){
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+                 case 'error':
+                     toastr.error("{{ Session::get('message') }}");
+                     break;
+             }
+            @endif
     </script>
     
     @yield('js')

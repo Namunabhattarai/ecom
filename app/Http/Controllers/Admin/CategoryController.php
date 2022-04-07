@@ -14,6 +14,7 @@ use Excel;
 use PDF;
 
 
+
 class CategoryController extends Controller
 {
    public function index(){
@@ -57,8 +58,13 @@ class CategoryController extends Controller
             $category->status = 'Active';
         }
         $category->save();
-        Session::flash('success_message', 'Category Has Been Added Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "category added successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect()->back()->with($notification);
     }
     public function dataTable(){
         $model = Category::all();
@@ -116,31 +122,56 @@ class CategoryController extends Controller
         }
 
         $category->save();
-        Session::flash('success_message', 'Category Has Been Updated Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "category updated successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect()->back()->with($notification);
     }
 
     public function deleteCategory($id){
         $category = Category::findOrFail($id);
         $category->delete();
         DB::table('categories')->where('parent_id', $id)->delete();
-        Session::flash('success_message', 'Category Has Been Deleted Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "category deleted successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect()->back()->with($notification);
     }
     public function deleteMultipleCategory(Request $request){
         //print_r($request->ids);
         $ids= $request->ids;
         Category::whereIn('id',$ids)->delete();
-        Session::flash('success_message', 'Categories Has Been Deleted Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "category deleted successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect()->back()->with($notification);
+    }
+    public function trash(){
+        $categories = Category::onlyTrashed()->get();
+       return view('admin.category.category-trash',compact('categories'));
+    }
+    public function restoreCategory($id){
+        $category = Category::withTrashed()->findOrFail($id);
+        if(!is_null($category)){
+            $category->restore();
+        }
+        return redirect('admin/category/index');
     }
 
     public function exportCategoryExcel(){
         return Excel::download(new CategoryExport, 'category.xlsx');
     }
     public function makePdf(){
-        $categories=Category::latest()->get();
-        return view('admin.pdf.categoryPdf',compact('categories'));
+       
     }
     public function exportPdf(){
         $categories=Category::latest()->get();

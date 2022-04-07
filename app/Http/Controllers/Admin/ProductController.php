@@ -75,8 +75,13 @@ class ProductController extends Controller
 
 
         $product->save();
-        Session::flash('success_message', 'Product Has Been Added Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "product added successfully",
+            'alert-type' => 'success'
+
+        );
+        
+        return redirect()->back()->with($notification);
     }
     public function editProduct($id){
         $product = Product::findOrFail($id);
@@ -137,15 +142,24 @@ class ProductController extends Controller
 
 
         $product->save();
-        Session::flash('success_message', 'Product Has Been Added Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "Product added successfully",
+            'alert-type' => 'success'
+
+        );
+        
+        return redirect()->back()->with($notification);
+
     }
 
   public function deleteProduct($id){
         $product = Product::findOrFail($id);
         $product->delete();
-        Session::flash('success_message', 'Product Has Been Deleted Successfully');
-        return redirect()->back();
+        $notification = array(
+            'message' => "product added successfully",
+            'alert-type' => 'success'
+
+        );
     }
     public function exportProductExcel(){
         return Excel::download(new ProductExport, 'product.xlsx');

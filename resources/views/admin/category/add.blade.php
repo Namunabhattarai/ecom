@@ -34,7 +34,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="status" class=" form-control-label">Select Status</label></div>
                     <div class="col-md-6 col-sm-6 ">
-                        <input type="checkbox"name="status" data-toggle="switchbutton" checked data-onstyle="warning" data-width="60" data-height="5">
+                        <input type="checkbox"name="status" data-toggle="switchbutton" checked data-size="xs"  data-onstyle="warning" data-width="60" data-height="5">
                          <label>Active</label>
                     </div>
                 </div>
@@ -45,13 +45,6 @@
                     
                 </div>
                
-                
-               
-                   
-                    
-                   
-                    
-                    
             </form>
         </div>
         

@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <a href="{{ route('addCategory') }}" class="btn add-btn btn-danger" ><i class="fa fa-plus"></i> Add Category</a>
-                        <a href="{{ route('trash') }}" class="btn add-btn btn-danger" ><i class="fa fa-plus"></i> View Trash</a>
+                        <a href="{{ route('category.index') }}" class="btn add-btn btn-danger" ><i class="fa fa-plus"></i> Category View</a>
                          <a href="{{ route('exportCategoryExcel') }}" class="btn add-btn btn-primary" style="background-color: #1a2eb9; border: 1px solid #1a2eb9;color: #fff; margin-right: 7px;" ><i class="fa fa-excel"></i> Export Excel</a>
                          <a href="{{ route('exportPdf') }}" class="btn add-btn btn-success" style="background-color: #37b91a; border: 1px solid #1a2eb9;color: #fff; margin-right: 7px;" ><i class="fa fa-excel"></i> Export Pdf</a>  
                         
@@ -54,7 +54,7 @@
                                     @endif
                                         
                                     </td>    
-                                    <td><a href="{{route('editCategory',$category->id)}}" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                    <td><a href="{{route('restoreCategory',$category->id)}}" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>
                                         <a href="{{route('deleteCategory',$category->id)}}" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-outline-danger btn-delete" rel="{{ $category->id }}" rel1="category/delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                     
