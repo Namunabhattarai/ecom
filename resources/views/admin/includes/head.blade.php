@@ -19,8 +19,10 @@
 
     <link rel="stylesheet" href="{{asset('public/dashboard/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('public/dashboard/assets/css/sweetalert.css')}}">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+   
+    
 </head>

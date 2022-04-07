@@ -139,7 +139,8 @@ class CategoryController extends Controller
         return Excel::download(new CategoryExport, 'category.xlsx');
     }
     public function makePdf(){
-       
+        $categories=Category::latest()->get();
+        return view('admin.pdf.categoryPdf',compact('categories'));
     }
     public function exportPdf(){
         $categories=Category::latest()->get();

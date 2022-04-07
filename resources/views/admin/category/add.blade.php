@@ -32,9 +32,9 @@
                     <div class="col-12 col-md-9"><input type="text" id="name" name="category_name" placeholder="Enter category name" class="form-control"></div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-md-3"><label for="status" class=" form-control-label">Status</label></div>
+                    <div class="col col-md-3"><label for="status" class=" form-control-label">Select Status</label></div>
                     <div class="col-md-6 col-sm-6 ">
-                        <input type="checkbox" name="status" checked data-toggle="toggle" data-size="xs" value="1">
+                        <input type="checkbox"name="status" data-toggle="switchbutton" checked data-onstyle="warning" data-width="60" data-height="5">
                          <label>Active</label>
                     </div>
                 </div>
@@ -58,4 +58,7 @@
     </div>
    
 </div>
+@endsection
+@section('js')
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
 @endsection

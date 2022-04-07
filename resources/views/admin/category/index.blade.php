@@ -80,7 +80,6 @@
 @section('js')
 <script src="{{ asset('public/dashboard/assets/js/jquery.sweet-alert.custom.js') }}"></script>
 <script src="{{ asset('public/dashboard/assets/js/sweetalert.min.js') }}"></script>
-
 <script>
     $("#data-table").DataTable({
         processing: true,
