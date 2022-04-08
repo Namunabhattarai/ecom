@@ -136,7 +136,7 @@ class CategoryController extends Controller
         $category->delete();
         DB::table('categories')->where('parent_id', $id)->delete();
         $notification = array(
-            'message' => "category deleted successfully",
+            'message' => "category moved to trash",
             'alert-type' => 'success'
 
         );
@@ -147,6 +147,18 @@ class CategoryController extends Controller
         //print_r($request->ids);
         $ids= $request->ids;
         Category::whereIn('id',$ids)->delete();
+        $notification = array(
+            'message' => "categories has been deleted successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect()->back()->with($notification);
+    }
+    public function forceDeleteMultipleCategory(Request $request){
+        //print_r($request->ids);
+        $ids= $request->ids;
+        Category::whereIn('id',$ids)->forceDelete();
         $notification = array(
             'message' => "category deleted successfully",
             'alert-type' => 'success'
@@ -163,6 +175,19 @@ class CategoryController extends Controller
         $category = Category::withTrashed()->findOrFail($id);
         if(!is_null($category)){
             $category->restore();
+        }
+        $notification = array(
+            'message' => "category restored successfully",
+            'alert-type' => 'success'
+
+        );
+       
+        return redirect('admin/category/index')->with($notification);;
+    }
+    public function forceDeleteCategory($id){
+        $category = Category::withTrashed()->findOrFail($id);
+        if(!is_null($category)){
+            $category->forceDelete();
         }
         return redirect('admin/category/index');
     }

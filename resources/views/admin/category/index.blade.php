@@ -12,18 +12,21 @@
                     </div>
                     <div class="col-auto float-right ml-auto">
                         <a href="{{ route('addCategory') }}" class="btn add-btn btn-danger" ><i class="fa fa-plus"></i> Add Category</a>
-                        <a href="{{ route('trash') }}" class="btn add-btn btn-danger" ><i class="fa fa-plus"></i> View Trash</a>
+                        <a href="{{ route('trash') }}" class="btn add-btn btn-primary" style="background-color: #1a2eb9; border: 1px solid #1a2eb9;color: #fff; margin-right: 7px;" ><i class="fa fa-excel"></i> View Trash</a>
                          <a href="{{ route('exportCategoryExcel') }}" class="btn add-btn btn-primary" style="background-color: #1a2eb9; border: 1px solid #1a2eb9;color: #fff; margin-right: 7px;" ><i class="fa fa-excel"></i> Export Excel</a>
                          <a href="{{ route('exportPdf') }}" class="btn add-btn btn-success" style="background-color: #37b91a; border: 1px solid #1a2eb9;color: #fff; margin-right: 7px;" ><i class="fa fa-excel"></i> Export Pdf</a>  
                         
                     </div>
                     <div class="card-body">
-                        <form action="{{route('deleteMultipleCategory')}}" method="post">
+                        <form action="{{route('deleteMultipleCategory')}}" method="post" id="form1">
                             @csrf
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                             <thead>
                                 <tr> 
-                                    <th></th>
+                                    <th>
+                                        <input type="checkbox" id="select-all">
+                                        <label>Select all</label>
+                                    </th>
                                     <th>S.N</th>
                                     <th>Category Name</th>
                                     <th>Under Category</th>
@@ -55,7 +58,7 @@
                                         
                                     </td>    
                                     <td><a href="{{route('editCategory',$category->id)}}" data-toggle="tooltip" title="Edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="{{route('deleteCategory',$category->id)}}" data-toggle="tooltip" title="Delete" class="btn btn-sm btn-outline-danger btn-delete" rel="{{ $category->id }}" rel1="category/delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{route('deleteCategory',$category->id)}}" data-toggle="tooltip" title="Trash" class="btn btn-sm btn-outline-danger btn-delete" rel="{{ $category->id }}" rel1="category/delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                     
                                 </tr>   
@@ -64,7 +67,7 @@
                             </tbody>
                             
                         </table>
-                        <input type="submit" value="Delete Categories">
+                        <input type="submit" value="Delete Selected Categories">
                     </form>
                     </div>
                 </div>
@@ -78,8 +81,18 @@
 
 @endsection
 @section('js')
+
 <script src="{{ asset('public/dashboard/assets/js/jquery.sweet-alert.custom.js') }}"></script>
 <script src="{{ asset('public/dashboard/assets/js/sweetalert.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#form1 #select-all").click(function(){
+            $("#form1 input[type='checkbox']").prop('checked',this);
+        });
+
+    });
+</script>
 <script>
     $("#data-table").DataTable({
         processing: true,
