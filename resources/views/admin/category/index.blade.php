@@ -38,7 +38,7 @@
                                 @foreach($categories as $category)
                                 <tr> 
                                     <td>
-                                        <input type="checkbox" name="ids[{{$category->id}}]" value="{{$category->id}}">
+                                        <input type="checkbox" name="ids[{{$category->id}}]" value="{{$category->id}}" class="checkbox">
                                     </td>
                                     <td>{{$category->id}}</td>
                                     <td>{{$category->category_name}}</td>
@@ -86,10 +86,18 @@
 <script src="{{ asset('public/dashboard/assets/js/sweetalert.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+   
     $(document).ready(function(){
         $("#form1 #select-all").click(function(){
-            $("#form1 input[type='checkbox']").prop('checked',this);
+            if(this.checked){
+                $("#form1 input[type='checkbox']").prop('checked',true);
+            }
+            else{
+                $("#form1 input[type='checkbox']").prop('checked',false);
+            }
+        
         });
+   
 
     });
 </script>
